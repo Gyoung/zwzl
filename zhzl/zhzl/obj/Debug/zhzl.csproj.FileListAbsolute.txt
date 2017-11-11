@@ -1,0 +1,6 @@
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\bin\zhzl.dll.config
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\bin\zhzl.dll
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\bin\zhzl.pdb
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\obj\Debug\zhzl.csprojResolveAssemblyReference.cache
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\obj\Debug\zhzl.dll
+d:\用户目录\我的文档\visual studio 2013\Projects\zhzl\zhzl\obj\Debug\zhzl.pdb
