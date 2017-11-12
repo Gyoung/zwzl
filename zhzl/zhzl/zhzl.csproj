@@ -63,12 +63,14 @@
     <Content Include="css\style.css" />
     <Content Include="css\themefisher-fonts.css" />
     <Content Include="Default.aspx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\themefisher-font.svg" />
     <Content Include="images\about-img.jpg" />
     <Content Include="images\about.jpg" />
     <Content Include="images\about\1.jpg" />
     <Content Include="images\about\2.jpg" />
     <Content Include="images\about\3.jpg" />
+    <Content Include="images\about\4.jpg" />
     <Content Include="images\call-to-action-.jpg" />
     <Content Include="images\call-to-action.jpg" />
     <Content Include="images\call-to-action2.jpg" />
@@ -85,10 +87,15 @@
     <Content Include="images\portfolio\portfolio-img5.jpg" />
     <Content Include="images\portfolio\portfolio-img6.jpg" />
     <Content Include="images\portfolio\single-portfolio-img1.jpg" />
+    <Content Include="images\product\1.jpg" />
+    <Content Include="images\product\2.jpg" />
+    <Content Include="images\product\3.jpg" />
+    <Content Include="images\product\4.jpg" />
     <Content Include="images\product\lora1.jpg" />
     <Content Include="images\product\lora2.jpg" />
     <Content Include="images\product\lora3.jpg" />
     <Content Include="images\product\lora4.jpg" />
+    <Content Include="images\timg.jpg" />
     <Content Include="index.html" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.form.js" />
@@ -125,6 +132,12 @@
     <Content Include="scss\.gitignore" />
     <Content Include="scss\responsive.scss" />
     <Content Include="scss\style.scss" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
