@@ -441,3 +441,7 @@ footer {
       footer p a:hover {
         color: #fff;
         text-decoration: none; }
+
+. text-left {
+    text-align:left
+}

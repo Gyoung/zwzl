@@ -85,6 +85,10 @@
     <Content Include="images\portfolio\portfolio-img5.jpg" />
     <Content Include="images\portfolio\portfolio-img6.jpg" />
     <Content Include="images\portfolio\single-portfolio-img1.jpg" />
+    <Content Include="images\product\lora1.jpg" />
+    <Content Include="images\product\lora2.jpg" />
+    <Content Include="images\product\lora3.jpg" />
+    <Content Include="images\product\lora4.jpg" />
     <Content Include="index.html" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.form.js" />
