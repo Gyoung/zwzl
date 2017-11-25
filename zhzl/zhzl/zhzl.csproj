@@ -115,6 +115,8 @@
     <Content Include="js\vendor\jquery-2.1.1.min.js" />
     <Content Include="js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="js\wow.min.js" />
+    <Content Include="product.html" />
+    <Content Include="product2.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
