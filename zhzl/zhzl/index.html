@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/style.css">
+        <link href="css/zzsc.css" rel="stylesheet" />
         <!-- Responsive Stylesheet -->
         <link rel="stylesheet" href="css/responsive.css">
     </head>
@@ -43,30 +44,33 @@
 	    Header start
 	    ==================== -->
         <div class="container">
-            <nav class="navbar navbar-fixed-top  navigation " id="top-nav">
+            <nav class="navbar navbar-fixed-top  navigation animated " id="top-nav">
                 <a class="navbar-brand" href="#">
-                    <img src="images/logo.png" alt="">
+                    <img src="images/logo2.jpg" alt="">
                 </a>
 
-              <button class="navbar-toggler hidden-lg-up float-lg-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
-                  <i class="tf-ion-android-menu"></i>
-              </button>
-              <div class="collapse navbar-toggleable-md" id="navbarResponsive">
-                <ul class="nav navbar-nav menu float-lg-right" id="top-nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">首页</a>
-                  </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">产品</a>
-                    </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#about">关于</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#contact">联系我们</a>
-                  </li>
-                </ul>
-              </div>
+                <button class="navbar-toggler hidden-lg-up float-lg-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <i class="tf-ion-android-menu"></i>
+                </button>
+                <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+                    <ul class="nav navbar-nav menu float-lg-right" id="top-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">产品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">下载区域</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </div>
         
@@ -239,9 +243,20 @@
                 </div>
             </div>
         </footer>
+        <div id="rightArrow"><a href="javascript:;" title="在线客户"></a></div>
+        <div id="floatDivBoxs">
+            <div class="floatDtt">在线客服</div>
+            <div class="floatShadow">
+                <ul class="floatDqq">
+                    <li style="padding-left:0px;"><a target="_blank" href="tencent://message/?uin=3494603434&Site=zonewu.com&Menu=yes"><img src="images/qq.png" align="absmiddle">&nbsp;&nbsp;商务</a></li>
+                    <li style="padding-left:0px;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2199037549&site=qq&menu=yes"><img src="images/qq.png" align="absmiddle">&nbsp;&nbsp;技术支持</a></li>
+                </ul>
+                <div style="text-align:center;padding:10PX 0 5px 0;background:#EBEBEB;"><img src="images/wx.png"><br>微信公众账号</div>
+            </div>
+        </div>
 
+       
 
-        <!-- Js -->
         <script src="js/vendor/jquery-2.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
@@ -254,6 +269,25 @@
         <script src="js/wow.min.js"></script>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script> -->
         <script src="js/main.js"></script>
-        
+        <script type="text/javascript">
+            $(function () {
+                var flag = 1;
+                $('#rightArrow').click(function () {
+                    if (flag == 1) {
+                        $("#floatDivBoxs").animate({ right: '-175px' }, 300);
+                        $(this).animate({ right: '-5px' }, 300);
+                        $(this).css('background-position', '-50px 0');
+                        flag = 0;
+                    } else {
+                        $("#floatDivBoxs").animate({ right: '0' }, 300);
+                        $(this).animate({ right: '170px' }, 300);
+                        $(this).css('background-position', '0px 0');
+                        flag = 1;
+                    }
+                });
+            })
+
+        </script>
+
     </body>
 </html>
