@@ -98,6 +98,7 @@
     <Content Include="images\product\lora2.jpg" />
     <Content Include="images\product\lora3.jpg" />
     <Content Include="images\product\lora4.jpg" />
+    <Content Include="images\product\zw.png" />
     <Content Include="images\qq.png" />
     <Content Include="images\timg.jpg" />
     <Content Include="images\wx.png" />
@@ -108,6 +109,15 @@
     <Content Include="js\jquery.nav.js" />
     <Content Include="js\jquery.sticky.js" />
     <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\layer\layer.js" />
+    <Content Include="js\layer\mobile\layer.js" />
+    <Content Include="js\layer\mobile\need\layer.css" />
+    <Content Include="js\layer\theme\default\icon-ext.png" />
+    <Content Include="js\layer\theme\default\icon.png" />
+    <Content Include="js\layer\theme\default\layer.css" />
+    <Content Include="js\layer\theme\default\loading-0.gif" />
+    <Content Include="js\layer\theme\default\loading-1.gif" />
+    <Content Include="js\layer\theme\default\loading-2.gif" />
     <Content Include="js\main.js" />
     <Content Include="js\min\main.min.js" />
     <Content Include="js\owl.carousel.min.js" />
