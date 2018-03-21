@@ -92,7 +92,7 @@
             form.on('submit(demo1)', function (data) {
                 var content = UE.getEditor('editor').getContent();
                 data.field.content = content;
-
+                data.field.action = "add";
                 $.ajax({
                     type: "post",
                     url: "/DataProcess.ashx",

@@ -19,6 +19,7 @@ namespace DBUitl
 
         public DateTime CreateTime { get; set; }
 
+        public DateTime ModifyTime { get; set; }
 
 
     }
