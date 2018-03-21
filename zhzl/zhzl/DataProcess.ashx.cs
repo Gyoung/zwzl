@@ -15,20 +15,21 @@ namespace zhzl.code
         public void ProcessRequest(HttpContext context)
         {
 
-            string title = context.Request["title"];
-            string remark = context.Request["remark"];
-            string content = context.Request["content"];
-            string imgPath = context.Request["img"];
+            string title = context.Request["title"]??"";
+            string remark = context.Request["remark"]??"";
+            string content = context.Request["content"]??"";
+            string imgPath = context.Request["img"]??"";
 
             Product product = new Product()
             {
                 Title=title,Content=content,
-                Remark=remark,ImgPath=imgPath
+                Remark=remark,ImgPath=imgPath,
+                CreateTime=DateTime.Now
             };
-
-
+            bool result=  DbUtil.Add(product);
+            String message = result == true ? "新增成功" : "新增失败";
             context.Response.ContentType = "text/plain";
-            context.Response.Write("Hello World");
+            context.Response.Write(message);
         }
 
         public bool IsReusable

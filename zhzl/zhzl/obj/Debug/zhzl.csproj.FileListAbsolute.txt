@@ -10,3 +10,5 @@ E:\code\zwzl\zhzl\zhzl\bin\zhzl.pdb
 E:\code\zwzl\zhzl\zhzl\obj\Debug\zhzl.csprojResolveAssemblyReference.cache
 E:\code\zwzl\zhzl\zhzl\obj\Debug\zhzl.dll
 E:\code\zwzl\zhzl\zhzl\obj\Debug\zhzl.pdb
+E:\code\zwzl\zhzl\zhzl\bin\DBUitl.dll
+E:\code\zwzl\zhzl\zhzl\bin\DBUitl.pdb
