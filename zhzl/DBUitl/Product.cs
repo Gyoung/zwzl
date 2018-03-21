@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DBUitl
 {
-    class Product
+    public class Product
     {
         public string Id { get; set; }
 
@@ -16,6 +16,9 @@ namespace DBUitl
         public string Remark { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
 
 
     }

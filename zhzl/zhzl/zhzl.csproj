@@ -53,6 +53,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\zwzl.accdb" />
     <Content Include="App_Data\zzy_db.mdb" />
     <Content Include="css\animate.css" />
     <Content Include="css\bootstrap.min-3.css" />
@@ -516,7 +517,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DBUitl\DBUitl.csproj">
+      <Project>{a9d1358e-2b3d-461b-8e9f-4cada1a23e76}</Project>
+      <Name>DBUitl</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\themefisher-font.eot" />
     <Content Include="fonts\themefisher-font.ttf" />
