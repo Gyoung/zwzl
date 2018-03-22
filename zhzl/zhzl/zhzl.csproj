@@ -498,6 +498,8 @@
     <Content Include="js\vendor\jquery-2.1.1.min.js" />
     <Content Include="js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="js\wow.min.js" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.xml" />
     <Content Include="manager\index.html" />
     <Content Include="manager\ProductEdit.html" />
     <Content Include="product.html" />
@@ -505,6 +507,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Config.cs" />
+    <Content Include="App_Code\ConfigHandler.cs" />
+    <Content Include="App_Code\CrawlerHandler.cs" />
+    <Content Include="App_Code\Handler.cs" />
+    <Content Include="App_Code\ListFileHandler.cs" />
+    <Content Include="App_Code\NotSupportedHandler.cs" />
+    <Content Include="App_Code\PathFormater.cs" />
+    <Content Include="App_Code\UploadHandler.cs" />
     <Compile Include="DataProcess.ashx.cs">
       <DependentUpon>DataProcess.ashx</DependentUpon>
     </Compile>
@@ -549,6 +559,7 @@
     <Content Include="js\utf8-net\third-party\video-js\font\vjs.woff" />
     <Content Include="DataProcess.ashx" />
     <Content Include="controller.ashx" />
+    <Content Include="config.json" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -557,9 +568,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lib\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -13,7 +13,7 @@ public static class PathFormatter
 {
     public static string Format(string originFileName, string pathFormat)
     {
-        if (String.IsNullOrWhiteSpace(pathFormat))
+        if (String.IsNullOrEmpty(pathFormat))
         {
             pathFormat = "{filename}{rand:6}";
         }

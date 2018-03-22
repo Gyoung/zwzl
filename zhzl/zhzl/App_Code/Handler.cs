@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace zhzl
-{
+
     /// <summary>
     /// Handler 的摘要说明
     /// </summary>
@@ -25,7 +24,7 @@ namespace zhzl
         {
             string jsonpCallback = Request["callback"],
                 json = JsonConvert.SerializeObject(response);
-            if (String.IsNullOrWhiteSpace(jsonpCallback))
+            if (String.IsNullOrEmpty(jsonpCallback))
             {
                 Response.AddHeader("Content-Type", "text/plain");
                 Response.Write(json);
@@ -43,4 +42,3 @@ namespace zhzl
         public HttpContext Context { get; private set; }
         public HttpServerUtility Server { get; private set; }
     }
-}

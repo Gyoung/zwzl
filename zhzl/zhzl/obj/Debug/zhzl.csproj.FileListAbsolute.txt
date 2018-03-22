@@ -12,3 +12,13 @@ E:\code\zwzl\zhzl\zhzl\obj\Debug\zhzl.dll
 E:\code\zwzl\zhzl\zhzl\obj\Debug\zhzl.pdb
 E:\code\zwzl\zhzl\zhzl\bin\DBUitl.dll
 E:\code\zwzl\zhzl\zhzl\bin\DBUitl.pdb
+E:\my-demo\zwzl\zhzl\zhzl\bin\zhzl.dll.config
+E:\my-demo\zwzl\zhzl\zhzl\bin\zhzl.dll
+E:\my-demo\zwzl\zhzl\zhzl\bin\zhzl.pdb
+E:\my-demo\zwzl\zhzl\zhzl\bin\DBUitl.dll
+E:\my-demo\zwzl\zhzl\zhzl\bin\DBUitl.pdb
+E:\my-demo\zwzl\zhzl\zhzl\obj\Debug\zhzl.csprojResolveAssemblyReference.cache
+E:\my-demo\zwzl\zhzl\zhzl\obj\Debug\zhzl.dll
+E:\my-demo\zwzl\zhzl\zhzl\obj\Debug\zhzl.pdb
+E:\my-demo\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.dll
+E:\my-demo\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.xml
