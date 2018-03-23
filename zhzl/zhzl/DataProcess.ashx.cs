@@ -15,7 +15,7 @@ namespace zhzl.code
         public void ProcessRequest(HttpContext context)
         {
             bool result = false;
-            string action = context.Request["title"] ?? "";
+            string action = context.Request["action"] ?? "";
             if (action == "del")
             {
                 string id = context.Request["id"] ?? "";

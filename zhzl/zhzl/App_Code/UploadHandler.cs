@@ -34,6 +34,10 @@ public class UploadHandler : Handler
         else
         {
             var file = Request.Files[UploadConfig.UploadFieldName];
+            if (file == null)
+            {
+                file = Request.Files["file"];
+            }
             uploadFileName = file.FileName;
 
             if (!CheckFileType(uploadFileName))
