@@ -503,6 +503,7 @@
     <Content Include="manager\Banner.html" />
     <Content Include="manager\index.html" />
     <Content Include="manager\ProductEdit.html" />
+    <Content Include="manager\ProductList.html" />
     <Content Include="product.html" />
     <Content Include="product2.html" />
     <Content Include="Web.config" />

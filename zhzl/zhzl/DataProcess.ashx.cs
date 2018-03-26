@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DBUitl;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace zhzl.code
 {
@@ -16,9 +18,19 @@ namespace zhzl.code
         {
             bool result = false;
             string action = context.Request["action"] ?? "";
-            if (action == "get")
+            if (action == "select")
             {
-
+                DataSet ds= ProductDb.GetList("");
+                DataTable table = ds.Tables[0];
+                Page page=new Page();
+                page.count = table.Rows.Count;
+                page.data = table;
+                page.code = 0;
+                page.msg = "";
+                string data = JsonConvert.SerializeObject(page);
+                context.Response.ContentType = "application/json";
+                context.Response.Write(data);
+                return;
             }
             else if (action == "del")
             {

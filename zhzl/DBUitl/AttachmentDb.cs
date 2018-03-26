@@ -7,29 +7,27 @@ using System.Text;
 
 namespace DBUitl
 {
-    public class ProductDb
+    public class AttachmentDb
     {
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public static bool Add(Product model)
+        public static bool Add(Attachment model)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into Product(");
-            strSql.Append("Title,Content,Remark,ImgPath,CreateTime)");
+            strSql.Append("insert into Attachment(");
+            strSql.Append("Name,Content,Path,CreateTime)");
             strSql.Append(" values (");
-            strSql.Append("@title,@content,@remark,@imgpath,@createtime)");
+            strSql.Append("@name,@content,@path,@createtime)");
             OleDbParameter[] parameters = {
-					new OleDbParameter("@title", OleDbType.VarChar,0),
+					new OleDbParameter("@name", OleDbType.VarChar,0),
 					new OleDbParameter("@content", OleDbType.LongVarChar,0),
-					new OleDbParameter("@remark", OleDbType.LongVarChar,0),
-					new OleDbParameter("@imgpath", OleDbType.VarChar,0),
+					new OleDbParameter("@path", OleDbType.LongVarChar,0),
 					new OleDbParameter("@createtime", OleDbType.Date)};
-            parameters[0].Value = model.Title;
+            parameters[0].Value = model.Name;
             parameters[1].Value = model.Content;
-            parameters[2].Value = model.Remark;
-            parameters[3].Value = model.ImgPath;
-            parameters[4].Value = model.CreateTime;
+            parameters[2].Value = model.Path;
+            parameters[3].Value = model.CreateTime;
             int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
             {
@@ -45,29 +43,26 @@ namespace DBUitl
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        public static bool Update(Product model)
+        public static bool Update(Attachment model)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("update Product set ");
-            strSql.Append("title=@title,");
+            strSql.Append("update Attachment set ");
+            strSql.Append("name=@name,");
             strSql.Append("content=@content,");
-            strSql.Append("ImgPath=@imgpath,");
-            strSql.Append("remark=@remark,");
+            strSql.Append("path=@path,");
             strSql.Append("modifytime=@modifytime");
             strSql.Append(" where id=@id");
             OleDbParameter[] parameters = {
-					new OleDbParameter("@title", OleDbType.VarChar,0),
+					new OleDbParameter("@name", OleDbType.VarChar,0),
 					new OleDbParameter("@content", OleDbType.LongVarChar,0),
-					new OleDbParameter("@imgpath", OleDbType.VarChar,0),
-					new OleDbParameter("@remark", OleDbType.LongVarChar,0),
-					new OleDbParameter("@modifytime", OleDbType.Date,4),
-                    new OleDbParameter("@id", OleDbType.VarChar,0)};
-            parameters[0].Value = model.Title;
+					new OleDbParameter("@path", OleDbType.VarChar,0),
+                    new OleDbParameter("@id", OleDbType.VarChar,0),
+					new OleDbParameter("@modifytime", OleDbType.Date,4)};
+            parameters[0].Value = model.Name;
             parameters[1].Value = model.Content;
-            parameters[2].Value = model.ImgPath;
-            parameters[3].Value = model.Remark;
+            parameters[2].Value = model.Path;
+            parameters[3].Value = model.Id;
             parameters[4].Value = model.ModifyTime;
-            parameters[5].Value = model.Id;
 
             int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -86,12 +81,12 @@ namespace DBUitl
         public static bool Delete(int id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from Product ");
+            strSql.Append("delete from Attachment ");
             strSql.Append(" where  id=@id");
             OleDbParameter[] parameters = {
                     new OleDbParameter("@id", OleDbType.VarChar,0)};
             parameters[0].Value = id;
-            int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
+            int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(),parameters);
             if (rows > 0)
             {
                 return true;
@@ -105,17 +100,16 @@ namespace DBUitl
         /// <summary>
         /// 获得数据列表
         /// </summary>
-        public static DataSet GetList(string strWhere)
+        public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select * ");
-            strSql.Append(" FROM Product ");
+            strSql.Append(" FROM Attachment ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
             }
             return DbHelperOleDb.Query(strSql.ToString());
         }
-
     }
 }

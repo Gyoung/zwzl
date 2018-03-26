@@ -44,8 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attachment.cs" />
+    <Compile Include="AttachmentDb.cs" />
     <Compile Include="DbHelperOleDb.cs" />
     <Compile Include="BannerDb.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="ProductDb.cs" />
     <Compile Include="Banner.cs" />
     <Compile Include="Product.cs" />
