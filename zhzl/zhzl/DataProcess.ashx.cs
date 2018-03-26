@@ -16,10 +16,14 @@ namespace zhzl.code
         {
             bool result = false;
             string action = context.Request["action"] ?? "";
-            if (action == "del")
+            if (action == "get")
+            {
+
+            }
+            else if (action == "del")
             {
                 string id = context.Request["id"] ?? "";
-                result = DbUtil.Delete(Convert.ToInt32(id));
+                result = ProductDb.Delete(Convert.ToInt32(id));
             }
             else
             {
@@ -39,15 +43,15 @@ namespace zhzl.code
                 };
                 if (action == "add")
                 {
-                    result = DbUtil.Add(product);
+                    result = ProductDb.Add(product);
                 }
                 else
                 {
-                    result = DbUtil.Update(product);
+                    result = ProductDb.Update(product);
                 }
             }
-           
-            String message = result == true ? "新增成功" : "新增失败";
+
+            String message = result == true ? "操作成功" : "操作失败";
             context.Response.ContentType = "text/plain";
             context.Response.Write(message);
         }

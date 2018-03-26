@@ -500,6 +500,7 @@
     <Content Include="js\wow.min.js" />
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\Newtonsoft.Json.xml" />
+    <Content Include="manager\Banner.html" />
     <Content Include="manager\index.html" />
     <Content Include="manager\ProductEdit.html" />
     <Content Include="product.html" />
@@ -515,6 +516,9 @@
     <Content Include="App_Code\NotSupportedHandler.cs" />
     <Content Include="App_Code\PathFormater.cs" />
     <Content Include="App_Code\UploadHandler.cs" />
+    <Compile Include="BannerHandler.ashx.cs">
+      <DependentUpon>BannerHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="DataProcess.ashx.cs">
       <DependentUpon>DataProcess.ashx</DependentUpon>
     </Compile>
@@ -560,6 +564,7 @@
     <Content Include="DataProcess.ashx" />
     <Content Include="controller.ashx" />
     <Content Include="config.json" />
+    <Content Include="BannerHandler.ashx" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

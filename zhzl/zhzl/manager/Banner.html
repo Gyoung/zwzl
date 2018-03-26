@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <link href="../js/layui/css/layui.css" rel="stylesheet" />
+    <style>
+        .layui-upload-img {
+            width: 800px;
+            height: 500px;
+            margin: 0 10px 10px 0;
+        }
+
+        .layui-upload {
+            padding-left: 8%;
+        }
+    </style>
+</head>
+<body>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>首页图片修改</legend>
+    </fieldset>
+
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">图片标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-upload">
+            <button type="button" class="layui-btn" id="imguploadbtn">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="uploadImg">
+                <p id="demoText"></p>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script src="../js/layui/layui.js"></script>
+    <script>
+        var imgPath = "", id = "";
+
+        $.ajax({
+            type: "post",
+            url: "/BannerHandler.ashx",
+            data: { action: "select" },
+            success: function (joResult) {
+                var data = JSON.parse(joResult);
+                if (data.length > 0) {
+                    $("input[name='title']").val(data[0].Title);
+                    imgPath = data[0].ImgPath;
+                    id = data[0].ID;
+                    $('#uploadImg').attr('src', imgPath);
+                }
+            }
+        })
+
+
+        layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
+            var form = layui.form
+            , layer = layui.layer
+            , upload = layui.upload;
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                data.field.action = id == "" ? "add" : "update";
+                data.field.id = id;
+                data.field.img = imgPath;
+                $.ajax({
+                    type: "post",
+                    url: "/BannerHandler.ashx",
+                    data: data.field,
+                    success: function (joResult) {
+                        alert(joResult);
+                    }
+                })
+                return false;
+            });
+
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#imguploadbtn'
+              , url: '/controller.ashx?action=uploadimage'
+              , done: function (res) {
+                  //如果上传失败
+                  if (res.state == "SUCCESS") {
+                      imgPath = "/" + res.url;
+                      $('#uploadImg').attr('src', imgPath);
+                  } else {
+                      return layer.msg(res.error);
+                  }
+              }
+              , error: function () {
+                  //演示失败状态，并实现重传
+                  var demoText = $('#demoText');
+                  demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                  demoText.find('.demo-reload').on('click', function () {
+                      uploadInst.upload();
+                  });
+              }
+            });
+        });
+    </script>
+
+</body>
+</html>
