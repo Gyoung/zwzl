@@ -184,6 +184,30 @@ namespace DBUitl
             }
         }
 
+        public static int ExecuteSql2(string SQLString, params OleDbParameter[] cmdParms)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                using (OleDbCommand cmd = new OleDbCommand())
+                {
+                    try
+                    {
+                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                        int rows = cmd.ExecuteNonQuery();
+                        cmd.CommandText = "select @@identity as id";
+                        cmd.Parameters.Clear();
+                        int id = Convert.ToInt32(cmd.ExecuteScalar());
+                        return id;
+                    }
+                    catch (OleDbException E)
+                    {
+                        throw new Exception(E.Message);
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// 执行一条计算查询结果语句,返回查询结果（object）。
         /// </summary>

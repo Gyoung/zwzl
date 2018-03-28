@@ -7,20 +7,27 @@
     <link href="../js/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body>
-    <table class="layui-table" lay-data="{width: 892, height:332, url:'/DataProcess.ashx?action=select', page:true, id:'idTest'}" lay-filter="demo">
+    <div class="layui-btn-group demoTable">
+        <button class="layui-btn" data-type="add">新增</button>
+        <button class="layui-btn" data-type="reload">刷新</button>
+    </div>
+    <table class="layui-table" lay-data="{width: 892, height:332, url:'/DataProcess.ashx?action=list', page:true, id:'idTest'}" lay-filter="demo">
         <thead>
             <tr>
-                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
                 <th lay-data="{field:'ID', width:80, sort: true, fixed: true}">ID</th>
                 <th lay-data="{field:'Title', width:160}">标题</th>
-                <th lay-data="{field:'Remark', width:200, sort: true}">备注</th>
-                <th lay-data="{field:'sign', width:ImgPath}">图片路径</th>
-                <th lay-data="{field:'CreateTime', width:80}">创建时间</th>
+                <th lay-data="{field:'Remark', width:160, sort: true}">备注</th>
+                <th lay-data="{field:'ImgPath', width:160}">图片路径</th>
+                <th lay-data="{field:'CreateTime',width:160}">创建时间</th>
                 <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
             </tr>
         </thead>
     </table>
-
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
     <script src="../js/layui/layui.js"></script>
 
     <script>
@@ -34,31 +41,62 @@
             table.on('tool(demo)', function (obj) {
                 var data = obj.data;
                 if (obj.event === 'detail') {
-                    layer.msg('ID：' + data.id + ' 的查看操作');
+                    layer.open({
+                        type: 2,
+                        title: '产品详情',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '/ProductView.html?action=select&id='+data.ID
+                    });
+
                 } else if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         obj.del();
+                        $.ajax({
+                            type: "post",
+                            url: "/DataProcess.ashx",
+                            data: {action:"del",id:data.ID},
+                            success: function (joResult) {
+                                layer.msg('删除成功');
+                            }
+                        })
                         layer.close(index);
                     });
                 } else if (obj.event === 'edit') {
-                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                    layer.open({
+                        type: 2,
+                        title: '产品详情',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '/manager/ProductEdit.html?action=select&id=' + data.ID
+                    });
+                   
                 }
             });
 
             var $ = layui.$, active = {
-                getCheckData: function () { //获取选中数据
-                    var checkStatus = table.checkStatus('idTest')
-                    , data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
+                add: function () { //获取选中数据
+                    layer.open({
+                        type: 2,
+                        title: '产品详情',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '/manager/ProductEdit.html?action=add'
+                    });
                 }
-              , getCheckLength: function () { //获取选中数目
-                  var checkStatus = table.checkStatus('idTest')
-                  , data = checkStatus.data;
-                  layer.msg('选中了：' + data.length + ' 个');
-              }
-              , isAll: function () { //验证是否全选
-                  var checkStatus = table.checkStatus('idTest');
-                  layer.msg(checkStatus.isAll ? '全选' : '未全选')
+              , reload: function () { //获取选中数目
+                  //执行重载
+                  table.reload('idTest', {
+                      page: {
+                          curr: 1 //重新从第 1 页开始
+                      }
+                  });
               }
             };
 

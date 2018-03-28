@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -12,7 +13,7 @@ namespace DBUitl
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public static bool Add(Product model)
+        public static int Add(Product model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Product(");
@@ -30,15 +31,8 @@ namespace DBUitl
             parameters[2].Value = model.Remark;
             parameters[3].Value = model.ImgPath;
             parameters[4].Value = model.CreateTime;
-            int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
-            if (rows > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            int id = DbHelperOleDb.ExecuteSql2(strSql.ToString(), parameters);
+            return id;
         }
 
 
@@ -115,6 +109,25 @@ namespace DBUitl
                 strSql.Append(" where " + strWhere);
             }
             return DbHelperOleDb.Query(strSql.ToString());
+        }
+
+
+
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public static string GetSingle(string id)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM Product where id=@id ");
+            OleDbParameter[] parameters = {
+					new OleDbParameter("@id", OleDbType.VarChar,0)};
+            parameters[0].Value = id;
+            DataSet dataSet = DbHelperOleDb.Query(strSql.ToString(), parameters);
+            DataTable table = dataSet.Tables[0];
+            string result = JsonConvert.SerializeObject(table);
+            return result;
         }
 
     }

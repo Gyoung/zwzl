@@ -20,9 +20,17 @@ namespace zhzl.code
             string action = context.Request["action"] ?? "";
             if (action == "select")
             {
-                DataSet ds= ProductDb.GetList("");
+                string id = context.Request["id"] ?? "";
+                string data = ProductDb.GetSingle(id);
+                context.Response.ContentType = "application/json";
+                context.Response.Write(data);
+                return;
+            }
+            else if (action == "list")
+            {
+                DataSet ds = ProductDb.GetList("");
                 DataTable table = ds.Tables[0];
-                Page page=new Page();
+                Page page = new Page();
                 page.count = table.Rows.Count;
                 page.data = table;
                 page.code = 0;
@@ -55,11 +63,19 @@ namespace zhzl.code
                 };
                 if (action == "add")
                 {
-                    result = ProductDb.Add(product);
+                    int ob = ProductDb.Add(product);
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write("{id:'"+ob+"'}");
+                    return;
                 }
                 else
                 {
+                    string id = context.Request["id"] ?? "";
+                    product.Id = id;
                     result = ProductDb.Update(product);
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write("{id:'" + id + "'}");
+                    return;
                 }
             }
 

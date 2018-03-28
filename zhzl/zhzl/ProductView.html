@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div id="productDetail"></div>
+    <script type="text/javascript">
+
+
+        var id = getQueryStringByName("id");
+        if (id.length > 0) {
+            $.ajax({
+                type: "post",
+                url: "/DataProcess.ashx",
+                data: { action: "select", id: id },
+                success: function (joResult) {
+                    var po = joResult[0];
+                    $("#productDetail").html(po.Content)
+                }
+            })
+        }
+
+        function getQueryStringByName(name) {
+            var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+            if (result == null || result.length < 1) {
+                return "";
+            }
+            return result[1];
+        }
+
+    </script>
+</body>
+</html>

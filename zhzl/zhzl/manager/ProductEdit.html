@@ -74,6 +74,39 @@
 
     <script>
         var imgPath = "";
+
+        var action = getQueryStringByName("action");
+        var id = getQueryStringByName("id");
+        if (action != "" && action == "select" && id!="") {
+            $.ajax({
+                type: "post",
+                url: "/DataProcess.ashx",
+                data: {action:"select",id:id},
+                success: function (joResult) {
+                    var po = joResult[0];
+                    $("input[name='title']").val(po.Title);
+                    $("textarea[name='remark']").val(po.Remark);
+                    if (po.ImgPath != null && po.ImgPath.length > 0) {
+                        $("#uploadImg").attr("src", po.ImgPath);
+                    }
+                    ue.ready(function () {
+                        ue.setContent(po.Content, false);
+                    });
+                }
+            })
+        }
+
+
+
+        function getQueryStringByName(name) {
+            var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+            if (result == null || result.length < 1) {
+                return "";
+            }
+            return result[1];
+        }
+
+
         layui.use(['form', 'layedit', 'laydate','upload'], function () {
             var form = layui.form
             , layer = layui.layer
@@ -95,14 +128,18 @@
             form.on('submit(demo1)', function (data) {
                 var content = UE.getEditor('editor').getContent();
                 data.field.content = content;
-                data.field.action = "add";
+                data.field.action =id.length>0? "update":"add";
                 data.field.img = imgPath;
+                data.field.id = id;
                 $.ajax({
                     type: "post",
                     url: "/DataProcess.ashx",
                     data: data.field,
                     success: function (joResult) {
-                        alert(joResult);
+                        if (joResult != null && joResult.id) {
+                            id = joResult.id;
+                            layer.msg('操作成功');
+                        }
                     }
                 })
                 return false;

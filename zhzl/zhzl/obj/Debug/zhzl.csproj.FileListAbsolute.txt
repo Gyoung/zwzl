@@ -22,3 +22,5 @@ E:\my-demo\zwzl\zhzl\zhzl\obj\Debug\zhzl.dll
 E:\my-demo\zwzl\zhzl\zhzl\obj\Debug\zhzl.pdb
 E:\my-demo\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.dll
 E:\my-demo\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.xml
+E:\code\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.dll
+E:\code\zwzl\zhzl\zhzl\bin\Newtonsoft.Json.xml
