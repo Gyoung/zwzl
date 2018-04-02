@@ -501,6 +501,7 @@
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\Newtonsoft.Json.xml" />
     <Content Include="manager\Banner.html" />
+    <Content Include="manager\Contact.html" />
     <Content Include="manager\index.html" />
     <Content Include="manager\ProductEdit.html" />
     <Content Include="manager\ProductList.html" />
@@ -520,6 +521,9 @@
     <Content Include="App_Code\UploadHandler.cs" />
     <Compile Include="BannerHandler.ashx.cs">
       <DependentUpon>BannerHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactHandler.ashx.cs">
+      <DependentUpon>ContactHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="DataProcess.ashx.cs">
       <DependentUpon>DataProcess.ashx</DependentUpon>
@@ -567,6 +571,7 @@
     <Content Include="controller.ashx" />
     <Content Include="config.json" />
     <Content Include="BannerHandler.ashx" />
+    <Content Include="ContactHandler.ashx" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
