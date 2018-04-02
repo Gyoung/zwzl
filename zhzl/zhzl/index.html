@@ -29,7 +29,7 @@
         <!-- Responsive Stylesheet -->
         <link rel="stylesheet" href="css/responsive.css">
         <style type="text/css">
-            #productInfo:hover {
+            #service .row .wow:hover {
                 cursor: pointer;
             }
         </style>
@@ -140,18 +140,14 @@
         <section id="service" class="service section">
             <div class="container">
                 <div class="row">
-                    <div class="heading wow fadeInUp">
-                        <h2>全产业链体系的产品</h2>
-                        <p>完整的产品体系</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 fadeInLeft">
+                    <!--<div class="col-sm-6 col-md-3 wow fadeInLeft">
                         <div class="block">
                             <img id="productInfo" title="单击显示详情" style="width:200px;height:200px" src="images/product/zw.png" />
                             <h3>ZWRE-100</h3>
-                            <p>ZW-RE100协议转换模块是实现KNX/EIB系统(European Installation Bus）与第三方系统无缝连接的协议转换设备。模块包含一个完整的KNX/EIB通信系统，通过RS232/RS485接口以十六进制命令码方式与KNX/EIB总线进行双向通信，即可控制也可监控EIB总线上设备的通信数据。</p>
+                            <p>ZW-RE100协议转换模块是实现KNX/EIB系统(European Installation Bus）</p>
                         </div>
                     </div>
-                    <!--<div class="col-sm-6 col-md-3 wow fadeInLeft" data-wow-delay="0.3s">
+                    <div class="col-sm-6 col-md-3 wow fadeInLeft" data-wow-delay="0.3s">
                         <div class="block">
                             <img src="images/product/2.jpg" />  
                         	<h3>lora智能路由</h3>
@@ -312,6 +308,70 @@
                     area: ['893px', '600px'],
                     content: 'product.html'
                 });
+            });
+
+
+            $("#service .row .wow").on("click", function () {
+                var id = $(this).attr("key-id");
+                layer.open({
+                    type: 2,
+                    title: '产品描述',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/ProductView.html?action=select&id=' + id
+                });
+            });
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/DataProcess.ashx",
+                    data: { action: "list" },
+                    async:false,
+                    success: function (result) {
+                        var data = result.data;
+                        var html = "";
+                        if (data != null && data.length > 0) {
+                            $(data).each(function (i, e) {
+                                var temp = ' <div key-id="'+e.ID+'" class="col-sm-6 col-md-3 wow fadeInLeft" data-wow-delay="'+i*0.3+'s">'+
+                                    '<div class="block"><img src="' + e.ImgPath + '" />' +
+                                    '<h3>'+e.Title+'</h3>' +
+                                    '<p>'+e.Remark+'</p></div></div>';
+                                html += temp;
+                            });
+
+                        }
+                        $("#service .row").html(html);
+                    }
+                })
+
+                $("#service .row .wow").on("click", function () {
+                    var id = $(this).attr("key-id");
+                    layer.open({
+                        type: 2,
+                        title: '产品描述',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '/ProductView.html?action=select&id=' + id
+                    });
+                });
+
+                $("#productInfo").on("click", function () {
+                    layer.open({
+                        type: 2,
+                        title: '产品描述',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: 'product.html'
+                    });
+                });
+
             });
 
         </script>

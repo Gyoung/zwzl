@@ -103,7 +103,7 @@ namespace DBUitl
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select * ");
-            strSql.Append(" FROM Product ");
+            strSql.Append(" FROM Product order by CreateTime desc ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
