@@ -212,12 +212,13 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="block">
                             <div class="heading wow fadeInUp">
-                                <h2>联系我们</h2>
-                                <p>厦门众物智联科技有限公司</p>
+                                <h2 class="title">联系我们</h2>
+                                <div class="content"></div>
+                                <!--<p>厦门众物智联科技有限公司</p>
                                 <p>厦门市新店镇五华偶寓3号楼705单元</p>
                                 <p><i class="fa fa-phone"></i> 熊经理:0592-3672095/13696930620</p>
                                 <p><i class="fa fa-envelope-o"></i> 邮件:xiongyx@zonewu.com</p>
-                                <p><img src="images/wx.png" /></p>
+                                <p><img src="images/wx.png" /></p>-->
                             </div>
                         </div>
                     </div>
@@ -360,17 +361,20 @@
                     });
                 });
 
-                $("#productInfo").on("click", function () {
-                    layer.open({
-                        type: 2,
-                        title: '产品描述',
-                        shadeClose: true,
-                        shade: false,
-                        maxmin: true, //开启最大化最小化按钮
-                        area: ['893px', '600px'],
-                        content: 'product.html'
-                    });
-                });
+                $.ajax({
+                    type: "post",
+                    url: "/ContactHandler.ashx",
+                    data: { action: "select" },
+                    async: false,
+                    success: function (joResult) {
+                        var data = JSON.parse(joResult);
+                        if (data.length > 0) {
+                            $("#contact .title").val(data[0].Title);
+                            $("#contact .content").html(data[0].Content);
+                        }
+                    }
+                })
+               
 
             });
 
