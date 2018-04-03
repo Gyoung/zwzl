@@ -32,6 +32,9 @@
             #service .row .wow:hover {
                 cursor: pointer;
             }
+            #download ul li {
+                float: left;
+            }
         </style>
     </head>
 
@@ -233,7 +236,10 @@
                         <div class="block">
                             <div class="heading wow fadeInUp">
                                 <h2>下载区域</h2>
-                                <a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a>
+                                <ul id="download-area" style="float:left">
+                                    <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
+                                    <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -347,6 +353,26 @@
                         $("#service .row").html(html);
                     }
                 })
+
+                $.ajax({
+                    type: "post",
+                    url: "/AttachmentHandler.ashx",
+                    data: { action: "list" },
+                    async: false,
+                    success: function (result) {
+                        var data = result.data;
+                        var html = "";
+                        if (data != null && data.length > 0) {
+                            $(data).each(function (i, e) {
+                                var temp = ' <li><a href="DownLoad.ashx?fileName=' + e.Path + '">' + e.Title + '</a></li>'
+                                html += temp;
+                            });
+
+                        }
+                        $("#download-area").html(html);
+                    }
+                })
+
 
                 $("#service .row .wow").on("click", function () {
                     var id = $(this).attr("key-id");
