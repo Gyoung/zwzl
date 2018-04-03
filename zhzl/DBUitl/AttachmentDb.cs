@@ -12,31 +12,24 @@ namespace DBUitl
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public static bool Add(Attachment model)
+        public static int Add(Attachment model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Attachment(");
-            strSql.Append("Name,Content,Path,CreateTime)");
+            strSql.Append("Title,Content,Path,CreateTime)");
             strSql.Append(" values (");
-            strSql.Append("@name,@content,@path,@createtime)");
+            strSql.Append("@title,@content,@path,@createtime)");
             OleDbParameter[] parameters = {
-					new OleDbParameter("@name", OleDbType.VarChar,0),
+					new OleDbParameter("@title", OleDbType.VarChar,0),
 					new OleDbParameter("@content", OleDbType.LongVarChar,0),
 					new OleDbParameter("@path", OleDbType.LongVarChar,0),
 					new OleDbParameter("@createtime", OleDbType.Date)};
-            parameters[0].Value = model.Name;
+            parameters[0].Value = model.Title;
             parameters[1].Value = model.Content;
             parameters[2].Value = model.Path;
             parameters[3].Value = model.CreateTime;
-            int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
-            if (rows > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            int id = DbHelperOleDb.ExecuteSql2(strSql.ToString(), parameters);
+            return id;
         }
 
 
@@ -47,18 +40,18 @@ namespace DBUitl
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Attachment set ");
-            strSql.Append("name=@name,");
+            strSql.Append("title=@title,");
             strSql.Append("content=@content,");
             strSql.Append("path=@path,");
             strSql.Append("modifytime=@modifytime");
             strSql.Append(" where id=@id");
             OleDbParameter[] parameters = {
-					new OleDbParameter("@name", OleDbType.VarChar,0),
+					new OleDbParameter("@title", OleDbType.VarChar,0),
 					new OleDbParameter("@content", OleDbType.LongVarChar,0),
 					new OleDbParameter("@path", OleDbType.VarChar,0),
                     new OleDbParameter("@id", OleDbType.VarChar,0),
 					new OleDbParameter("@modifytime", OleDbType.Date,4)};
-            parameters[0].Value = model.Name;
+            parameters[0].Value = model.Title;
             parameters[1].Value = model.Content;
             parameters[2].Value = model.Path;
             parameters[3].Value = model.Id;
@@ -100,11 +93,11 @@ namespace DBUitl
         /// <summary>
         /// 获得数据列表
         /// </summary>
-        public DataSet GetList(string strWhere)
+        public static DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select * ");
-            strSql.Append(" FROM Attachment ");
+            strSql.Append(" FROM Attachment order by CreateTime desc ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
