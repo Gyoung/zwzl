@@ -18,7 +18,7 @@ namespace zhzl
             try
             {
                 String fileName= context.Request["fileName"];
-                string strFilePath = context.Server.MapPath("~") + "/files/" + fileName;//服务器文件路径
+                string strFilePath = context.Server.MapPath("~")  + fileName;//服务器文件路径
                 FileInfo fileInfo = new FileInfo(strFilePath);
                 context.Response.Clear();
                 context.Response.Charset = "GB2312";

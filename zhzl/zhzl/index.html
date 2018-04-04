@@ -32,9 +32,10 @@
             #service .row .wow:hover {
                 cursor: pointer;
             }
-            #download ul li {
-                float: left;
+            #download {
+               font-size:larger
             }
+          
         </style>
     </head>
 
@@ -236,10 +237,10 @@
                         <div class="block">
                             <div class="heading wow fadeInUp">
                                 <h2>下载区域</h2>
-                                <ul id="download-area" style="float:left">
+                                <div id="download-area" style="text-align:center">
                                     <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
                                     <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -364,7 +365,7 @@
                         var html = "";
                         if (data != null && data.length > 0) {
                             $(data).each(function (i, e) {
-                                var temp = ' <li><a href="DownLoad.ashx?fileName=' + e.Path + '">' + e.Title + '</a></li>'
+                                var temp = ' <div><a href="DownLoad.ashx?fileName=' + e.Path + '">' + e.Title + '</a></div>'
                                 html += temp;
                             });
 
