@@ -21,7 +21,7 @@ namespace zhzl
             {
                 if (action == "select")
                 {
-                    string ban = BannerDb.GetSingle("1");
+                    string ban = BannerDb.GetSingle("2");
                     context.Response.Write(ban);
                     return;
                 }

@@ -55,7 +55,7 @@
         <div class="container">
             <nav class="navbar navbar-fixed-top  navigation animated " id="top-nav">
                 <a class="navbar-brand" href="#">
-                    <img src="images/logo2.jpg" alt="">
+                    <img  src="images/logo2.jpg" alt="">
                 </a>
 
                 <button class="navbar-toggler hidden-lg-up float-lg-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -89,8 +89,8 @@
 	            <div class="row">
 	                <div class="col-md-7">
 	                    <div class="block">
-	                        <h1 class="wow fadeInDown" data-wow-delay="0.3s" data-wow-duration=".2s">提供一站式IoT部署方案</h1>
-	                        <p class="wow fadeInDown" data-wow-delay="0.5s" data-wow-duration=".5s">基于LoRaWAN技术的设备连接、数据采集、网络传输、平台服务</p>
+                            <h1 id="banner-title" class="wow fadeInDown" data-wow-delay="0.3s" data-wow-duration=".2s">提供一站式IoT部署方案</h1>
+                            <p id="banner-content" class="wow fadeInDown" data-wow-delay="0.5s" data-wow-duration=".5s">基于LoRaWAN技术的设备连接、数据采集、网络传输、平台服务</p>
 	                    </div>
 	                </div>
 	                <!--<div class="col-md-5 wow zoomIn">
@@ -143,6 +143,10 @@
         ==================== -->
         <section id="service" class="service section">
             <div class="container">
+                <div class="heading wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                    <h2>全产业链体系的产品</h2>
+                    <p>完整的产品体系</p>
+                </div>
                 <div class="row">
                     <!--<div class="col-sm-6 col-md-3 wow fadeInLeft">
                         <div class="block">
@@ -335,6 +339,23 @@
             $(document).ready(function () {
                 $.ajax({
                     type: "post",
+                    url: "/BannerHandler.ashx",
+                    data: { action: "select" },
+                    success: function (joResult) {
+                        var data = JSON.parse(joResult);
+                        if (data.length > 0) {
+                            $("#banner-title").text(data[0].Title);
+                            $("#banner-content").text(data[0].Content);
+                            $('#banner-img').attr('src', data[0].ImgPath);
+                            $(".bg-1").css("background-image", "url('"+data[0].ImgPath+"')");
+                        }
+                    }
+                })
+
+
+
+                $.ajax({
+                    type: "post",
                     url: "/DataProcess.ashx",
                     data: { action: "list" },
                     async:false,
@@ -343,10 +364,14 @@
                         var html = "";
                         if (data != null && data.length > 0) {
                             $(data).each(function (i, e) {
+                                var remark = "";
+                                if (e.Remark != null && e.Remark.length > 50) {
+                                    remark = e.Remark.substring(0, 50) + "...";
+                                }
                                 var temp = ' <div key-id="'+e.ID+'" class="col-sm-6 col-md-3 wow fadeInLeft" data-wow-delay="'+i*0.3+'s">'+
-                                    '<div class="block"><img src="' + e.ImgPath + '" />' +
+                                    '<div class="block"><img style="width:200px;height:200px" src="' + e.ImgPath + '" />' +
                                     '<h3>'+e.Title+'</h3>' +
-                                    '<p>'+e.Remark+'</p></div></div>';
+                                    '<p title="' + e.Remark + '">' + remark + '</p></div></div>';
                                 html += temp;
                             });
 

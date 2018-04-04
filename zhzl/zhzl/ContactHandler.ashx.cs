@@ -21,7 +21,7 @@ namespace zhzl
             {
                 if (action == "select")
                 {
-                    string con = ContactDb.GetSingle("1");
+                    string con = ContactDb.GetSingle("2");
                     context.Response.Write(con);
                     return;
                 }
