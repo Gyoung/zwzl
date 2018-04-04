@@ -17,16 +17,18 @@ namespace DBUitl
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Banner(");
-            strSql.Append("Title,ImgPath,CreateTime)");
+            strSql.Append("Title,Content,ImgPath,CreateTime)");
             strSql.Append(" values (");
-            strSql.Append("@title,@imgpath,@createtime)");
+            strSql.Append("@title,@content,@imgpath,@createtime)");
             OleDbParameter[] parameters = {
 					new OleDbParameter("@title", OleDbType.VarChar,0),
+                    new OleDbParameter("@content", OleDbType.VarChar,0),
 					new OleDbParameter("@imgpath", OleDbType.VarChar,0),
 					new OleDbParameter("@createtime", OleDbType.Date)};
             parameters[0].Value = model.Title;
-            parameters[1].Value = model.ImgPath;
-            parameters[2].Value = model.CreateTime;
+            parameters[1].Value = model.Content;
+            parameters[2].Value = model.ImgPath;
+            parameters[3].Value = model.CreateTime;
             int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
             {
@@ -47,18 +49,21 @@ namespace DBUitl
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Banner set ");
             strSql.Append("title=@title,");
+            strSql.Append("content=@content,");
             strSql.Append("ImgPath=@imgpath,");
             strSql.Append("modifytime=@modifytime");
             strSql.Append(" where id=@id");
             OleDbParameter[] parameters = {
 					new OleDbParameter("@title", OleDbType.VarChar,0),
+                    new OleDbParameter("@content", OleDbType.VarChar,0),
 					new OleDbParameter("@imgpath", OleDbType.VarChar,0),
 					new OleDbParameter("@modifytime", OleDbType.Date,4),
                     new OleDbParameter("@id", OleDbType.VarChar,0)};
             parameters[0].Value = model.Title;
-            parameters[1].Value = model.ImgPath;
-            parameters[2].Value = model.ModifyTime;
-            parameters[3].Value = model.Id;
+            parameters[1].Value = model.Content;
+            parameters[2].Value = model.ImgPath;
+            parameters[3].Value = model.ModifyTime;
+            parameters[4].Value = model.Id;
 
             int rows = DbHelperOleDb.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)

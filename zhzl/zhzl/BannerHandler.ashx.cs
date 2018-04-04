@@ -27,12 +27,14 @@ namespace zhzl
                 }
                 string title = context.Request["title"] ?? "";
                 string id = context.Request["id"] ?? "";
+                string content = context.Request["content"] ?? "";
                 string imgPath = context.Request["img"] ?? "";
 
                 Banner banner = new Banner()
                 {
                     Title = title,
                     Id = id,
+                    Content=content,
                     ImgPath = imgPath,
                     CreateTime = DateTime.Now,
                     ModifyTime = DateTime.Now
