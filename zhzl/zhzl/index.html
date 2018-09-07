@@ -11,8 +11,8 @@
         
         <!-- Fonts -->
         <!-- Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400i|Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-        
+        <!--<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400i|Source+Sans+Pro:300,400,600,700" rel="stylesheet">-->
+        <!--  -->
         <!-- CSS -->
 
         <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
@@ -41,13 +41,13 @@
 
     <body id="body">
 
-    	<div id="preloader">
+    	<!--<div id="preloader">
     		<div class="book">
     		  <div class="book__page"></div>
     		  <div class="book__page"></div>
     		  <div class="book__page"></div>
     		</div>
-    	</div>
+    	</div>-->
 
 	    <!-- 
 	    Header start
@@ -358,7 +358,7 @@
                     type: "post",
                     url: "/DataProcess.ashx",
                     data: { action: "list" },
-                    async:false,
+                    async:true,
                     success: function (result) {
                         var data = result.data;
                         var html = "";
@@ -384,7 +384,7 @@
                     type: "post",
                     url: "/AttachmentHandler.ashx",
                     data: { action: "list" },
-                    async: false,
+                    async: true,
                     success: function (result) {
                         var data = result.data;
                         var html = "";
@@ -417,7 +417,7 @@
                     type: "post",
                     url: "/ContactHandler.ashx",
                     data: { action: "select" },
-                    async: false,
+                    async: true,
                     success: function (joResult) {
                         var data = JSON.parse(joResult);
                         if (data.length > 0) {
