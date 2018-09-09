@@ -71,6 +71,7 @@
     <Content Include="Default.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\themefisher-font.svg" />
+    <Content Include="Global.asax" />
     <Content Include="images\about-img.jpg" />
     <Content Include="images\about.jpg" />
     <Content Include="images\about\1.jpg" />
@@ -509,6 +510,10 @@
     <Content Include="product.html" />
     <Content Include="product2.html" />
     <Content Include="ProductView.html" />
+    <Content Include="upload\image\20180404\6365847706018422471956667.jpg" />
+    <Content Include="upload\image\20180404\6365847755696763912494052.png" />
+    <Content Include="upload\image\20180404\6365847886111623217361034.png" />
+    <Content Include="upload\image\20180404\6365847925006047858679996.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -542,6 +547,10 @@
     <Compile Include="DownLoad.ashx.cs">
       <DependentUpon>DownLoad.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LeafUDPClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -578,6 +587,7 @@
     <Content Include="ContactHandler.ashx" />
     <Content Include="AttachmentHandler.ashx" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
+    <Content Include="upload\file\20180404\6365847747007466916270448.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
