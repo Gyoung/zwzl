@@ -5,32 +5,35 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace zhzl
 {
-    public class Global : System.Web.HttpApplication
+    /// <summary>
+    /// SocketHandler 的摘要说明
+    /// </summary>
+    public class SocketHandler : IHttpHandler
     {
-
         LeafUDPClient udpserver = new LeafUDPClient();
 
-        protected void Application_Start(object sender, EventArgs e)
+        public void ProcessRequest(HttpContext context)
         {
             try
             {
                 //HttpApplication happ = (HttpApplication)sender;
-                //IPEndPoint ipLocalEndPoint= new IPEndPoint(IPAddress.Any, 6000);
-               
-               
-                //udpserver.NetWork = new UdpClient(ipLocalEndPoint);
-                //udpserver.ipLocalEndPoint = ipLocalEndPoint;
-                //udpserver.NetWork.BeginReceive(new AsyncCallback(ReceiveCallback), udpserver);
+                IPEndPoint ipLocalEndPoint = new IPEndPoint(IPAddress.Any, 6000);
+
+
+                udpserver.NetWork = new UdpClient(ipLocalEndPoint);
+                udpserver.ipLocalEndPoint = ipLocalEndPoint;
+                udpserver.NetWork.BeginReceive(new AsyncCallback(ReceiveCallback), udpserver);
             }
             catch (Exception ex)
             {
-                
+
             }
+
+            context.Response.ContentType = "text/plain";
+            context.Response.Write("Hello World");
         }
 
         /// <summary>
@@ -48,14 +51,14 @@ namespace zhzl
                     IPEndPoint fclient = userver.ipLocalEndPoint;
                     Byte[] recdata = userver.NetWork.EndReceive(ar, ref fclient);
                     ConnName = userver.ipLocalEndPoint.Port + "->" + fclient.ToString();
-                    string data= new ASCIIEncoding().GetString(recdata);
+                    string data = new ASCIIEncoding().GetString(recdata);
                     HttpContext.Current.Session["currentData"] = data;
                 }
             }
             catch (ObjectDisposedException ex) { }
             catch (Exception ex)
             {
-               
+
             }
             finally
             {
@@ -66,35 +69,12 @@ namespace zhzl
             }
         }
 
-
-        protected void Session_Start(object sender, EventArgs e)
+        public bool IsReusable
         {
-
-        }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Session_End(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Application_End(object sender, EventArgs e)
-        {
-
+            get
+            {
+                return false;
+            }
         }
     }
 }

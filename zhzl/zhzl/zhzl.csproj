@@ -517,6 +517,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SocketHandler.ashx.cs">
+      <DependentUpon>SocketHandler.ashx</DependentUpon>
+    </Compile>
     <Content Include="App_Code\Config.cs" />
     <Content Include="App_Code\ConfigHandler.cs" />
     <Content Include="App_Code\CrawlerHandler.cs" />
@@ -549,6 +552,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LastDataHandler.ashx.cs">
+      <DependentUpon>LastDataHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="LeafUDPClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -586,8 +592,10 @@
     <Content Include="BannerHandler.ashx" />
     <Content Include="ContactHandler.ashx" />
     <Content Include="AttachmentHandler.ashx" />
+    <Content Include="LastDataHandler.ashx" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <Content Include="upload\file\20180404\6365847747007466916270448.pdf" />
+    <Content Include="SocketHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

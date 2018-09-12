@@ -76,6 +76,9 @@
                             <a class="nav-link" href="#contact">联系我们</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#data">实时数据</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#download">下载区域</a>
                         </li>
                     </ul>
@@ -234,7 +237,24 @@
             </div>
         </section>
 
-        <section class="section about bg-gray" id="download">
+        <section id="data" class="section bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 fadeInLeft">
+                        <div class="block">
+                            <div class="heading wow fadeInUp">
+                                <h2 class="title">实时数据</h2>
+                                <div class="content"></div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section about" id="download">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -242,7 +262,6 @@
                             <div class="heading wow fadeInUp">
                                 <h2>下载区域</h2>
                                 <div id="download-area" style="text-align:center">
-                                    <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
                                     <li><a href="DownLoad.ashx?fileName=ZW-RE100技术规格书V1.0.0.pdf">ZW-RE100技术规格书V1.0.0.pdf</a></li>
                                 </div>
                             </div>
@@ -308,33 +327,48 @@
                         flag = 1;
                     }
                 });
+
+                $("#productInfo").on("click", function () {
+                    layer.open({
+                        type: 2,
+                        title: '产品描述',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: 'product.html'
+                    });
+                });
+
+                //$.ajax({
+                //    type: "post",
+                //    url: "/SocketHandler.ashx",
+                //    success: function (data) {
+                //        if (data.length > 0) {
+                //            $("#data .content").append("<sapn>" + data + "<span><br>");
+                //        }
+
+                //    }
+                //})
+
+                var scrtime = setInterval(function scrolllist() {
+                    $.ajax({
+                        type: "post",
+                        url: "/LastDataHandler.ashx",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                $("#data .content").append("<sapn>" + data + "<span><br>");
+                            }
+                            
+                        }
+                    })
+
+                }, 3000);
+
+               
             })
 
-            $("#productInfo").on("click", function () {
-                layer.open({
-                    type: 2,
-                    title: '产品描述',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: 'product.html'
-                });
-            });
-
-
-            $("#service .row .wow").on("click", function () {
-                var id = $(this).attr("key-id");
-                layer.open({
-                    type: 2,
-                    title: '产品描述',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/ProductView.html?action=select&id=' + id
-                });
-            });
+           
 
             $(document).ready(function () {
                 $.ajax({
@@ -351,7 +385,6 @@
                         }
                     }
                 })
-
 
 
                 $.ajax({
@@ -377,6 +410,20 @@
 
                         }
                         $("#service .row").html(html);
+
+                        $("#service .row .wow").on("click", function () {
+                            var id = $(this).attr("key-id");
+                            layer.open({
+                                type: 2,
+                                title: '产品描述',
+                                shadeClose: true,
+                                shade: false,
+                                maxmin: true, //开启最大化最小化按钮
+                                area: ['893px', '600px'],
+                                content: '/ProductView.html?action=select&id=' + id
+                            });
+                        });
+
                     }
                 })
 
