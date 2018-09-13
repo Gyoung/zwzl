@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,8 @@ namespace zhzl
     {
 
         static List<string> list = new List<string>();
+        private static object o = new object();
+        static Queue queue = new Queue();
         LeafUDPClient udpserver = new LeafUDPClient();
 
 
@@ -40,11 +43,17 @@ namespace zhzl
            
 
             string data = "";
-            if (list.Count>0)
+            lock (o)
             {
-                data = list[0];
-                list.Remove(data);
+                //object ob = queue.Dequeue();
+                //data = ob == null ? "" : ob.ToString();
+                if (list.Count > 0)
+                {
+                    data = list[0];
+                    list.Remove(data);
+                }
             }
+          
             context.Response.ContentType = "text/plain";
             context.Response.Write(data);
         }
@@ -65,7 +74,13 @@ namespace zhzl
                     Byte[] recdata = userver.NetWork.EndReceive(ar, ref fclient);
                     ConnName = userver.ipLocalEndPoint.Port + "->" + fclient.ToString();
                     string data = new ASCIIEncoding().GetString(recdata);
-                    list.Add(data);
+                    //
+                    lock (o)
+                    {
+                        list.Add(data);
+                        //queue.Enqueue(data);
+                    }
+                   
                   
                 }
             }
