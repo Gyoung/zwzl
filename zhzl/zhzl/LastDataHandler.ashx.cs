@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -18,7 +19,8 @@ namespace zhzl
         static List<string> list = new List<string>();
         private static object o = new object();
         static Queue queue = new Queue();
-        LeafUDPClient udpserver = new LeafUDPClient();
+        static LeafUDPClient udpserver = new LeafUDPClient();
+        int port = 20002;
 
 
         public void ProcessRequest(HttpContext context)
@@ -28,16 +30,17 @@ namespace zhzl
                 try
                 {
                     //HttpApplication happ = (HttpApplication)sender;
-                    IPEndPoint ipLocalEndPoint = new IPEndPoint(IPAddress.Any, 6000);
+                    IPEndPoint ipLocalEndPoint = new IPEndPoint(IPAddress.Any, port);
 
 
                     udpserver.NetWork = new UdpClient(ipLocalEndPoint);
                     udpserver.ipLocalEndPoint = ipLocalEndPoint;
                     udpserver.NetWork.BeginReceive(new AsyncCallback(ReceiveCallback), udpserver);
+                    EventLog.WriteEntry("LastDataHandler.ashx","socket启动成功!");
                 }
                 catch (Exception ex)
                 {
-
+                    EventLog.WriteEntry("LastDataHandler.ashx","port:"+port+" "+ ex.ToString());
                 }
             }
            
@@ -72,22 +75,25 @@ namespace zhzl
                 {
                     IPEndPoint fclient = userver.ipLocalEndPoint;
                     Byte[] recdata = userver.NetWork.EndReceive(ar, ref fclient);
+                    
                     ConnName = userver.ipLocalEndPoint.Port + "->" + fclient.ToString();
-                    string data = new ASCIIEncoding().GetString(recdata);
+                    string data = new ASCIIEncoding().GetString((recdata));
                     //
                     lock (o)
                     {
-                        list.Add(data);
+                        list.Add("时间:"+DateTime.Now+" 数据:"+data);
                         //queue.Enqueue(data);
                     }
                    
                   
                 }
             }
-            catch (ObjectDisposedException ex) { }
+            catch (ObjectDisposedException ex) {
+                EventLog.WriteEntry("LastDataHandler.ashx", "port:" + port + " " + ex.ToString());
+            }
             catch (Exception ex)
             {
-
+                EventLog.WriteEntry("LastDataHandler.ashx", "port:" + port + " " + ex.ToString());
             }
             finally
             {
@@ -96,6 +102,16 @@ namespace zhzl
                     userver.NetWork.BeginReceive(new AsyncCallback(ReceiveCallback), userver);//继续异步接收数据
                 }
             }
+        }
+
+        private byte[] trans(byte[] bytes)
+        {
+            byte[] newBytes=new byte[bytes.Length];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                newBytes[i] = (byte)(Convert.ToInt32(bytes[i].ToString(), 16));
+            }
+            return newBytes;
         }
 
 
